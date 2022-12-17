@@ -1,0 +1,106 @@
+//  Shiva Shukla
+
+package test;
+import java.util.*;
+
+class MyException extends Exception{
+	public MyException(String s) {
+		super(s);
+	}
+}
+
+
+class V{
+	static Map<String,Employee> map=new HashMap<>();
+	public static boolean validateAge(int age) {
+		try {
+			 if(age<0)throw new MyException("ERROR: Ghosts are Not Allowed");
+			 else if(age>100)throw new MyException("ERROR: Purvaj are Not Allowed");
+		     else if(age>60)throw new MyException("ERROR: Seniors are Not Allowed");
+			 else if(age<18)throw new MyException("ERROR: Children are Not Allowed");
+			 else return true;
+		}
+		catch(MyException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public static boolean validateName(String Name) {
+		try {
+			if(map.containsKey(Name))throw new MyException("ERROR: Duplicate Names are not allowed");
+			else return true;
+		}
+		catch(MyException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public static void add(Employee emp) {
+		map.put(emp.name, emp);
+		System.out.println("Successfully added Employee\n");	
+	}
+	
+}
+
+
+class Employee{
+	String name;
+	int age;
+	public Employee(String name,int age) {
+		this.name=name;
+		this.age=age;
+	}
+	public static boolean add() {
+		Scanner sc=new Scanner(System.in);
+		try {
+			String name="";
+			int age=0;
+			boolean valid=true;
+			
+			System.out.println("Enter the Name");
+			while(true) {
+				if(!valid)System.out.println("Enter the Name again: ");
+		    	name=sc.nextLine();
+				valid=V.validateName(name);
+				if(valid)break;
+			}
+			
+			System.out.println("Enter the age");
+			while(true) {
+				if(!valid)System.out.println("Enter the Age again: ");
+				age=sc.nextInt();
+				valid=V.validateAge(age);
+				if(valid)break;
+			}
+			V.add(new Employee(name,age));
+		}
+		catch(Exception e) {
+			System.out.println("Invalid manner Of Entries");
+			return false;
+		}	
+	return true;
+}
+	
+}
+
+
+public class Main4 {
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	boolean valid= true;
+	String op="";
+		do {
+			System.out.println("----------------ADD EMPLOYEE DETAILS---------------");
+			valid=Employee.add();
+			if(!valid)System.out.println("You need to enter the entries once again\n");
+			else {
+			  System.out.println("Want to continue......Press (Y/N) ");
+			  op=sc.next();
+			}		
+		}while( !valid || op.charAt(0)=='Y' || op.charAt(0)=='y' );
+		System.out.println("THANKS");
+	}
+}
+

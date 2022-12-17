@@ -1,0 +1,492 @@
+********************SHIVA SHUKLA(BATCH-2)************************
+-------------------------------
+------Core Java Exercises------
+-------------------------------
+Q.Write the program in java to print pascal triangle use Multidimensional Array
+
+import java.util.Scanner;
+class Pascal_Triangle
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n,i,j,a[][];
+        System.out.println("HOW MANY STEPS?");
+        n=sc.nextInt();
+        a=new int[n][n];
+        //filling the 2D matrix.
+        for(i=0;i<n;i++){
+            for(j=0;j<=i;j++)
+                if(j==0 || j==i)
+                    a[i][j]=1;
+                else
+                    a[i][j]=a[i-1][j-1]+a[i-1][j];
+        }
+        
+        System.out.println("\nOUTPUT:\n");
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<=i;j++)
+                System.out.print(a[i][j]+"\t");
+
+            System.out.println();
+        }
+    }
+}
+
+Q. Create class of employee which count the number of objects created
+
+class Employee  
+{  
+public String name;  
+public int salary;   
+public static int count=0;  
+
+Employee(String name, int salary)  
+{  
+this.name= name;  
+this.salary= salary;  
+count++;  
+}  
+}  
+public class EmployeeDemo  
+{  
+public static void main(String args[])  
+{  
+//creating objects      
+Employee emp1 = new Employee("John", 20000);  
+Employee emp2 = new Employee("Tom", 60000);  
+Employee emp3 = new Employee("Andrew",29000);  
+Employee emp4 = new Employee("Mathew", 50000);  
+System.out.println ("There are " + Employee.count + " objects in this class.");  
+}  
+}  
+
+Q.Create the list of employee.Add employee to the list.Print list of employee every time
+  time a new employee is added.
+
+package com.arraylist;
+ 
+import java.util.*;
+ 
+class Employee{
+    public int id;
+    public String name;
+    public String city;
+    public static int count = 0;
+
+    public Employee(){}
+ 
+    public Employee(int id, String name,String city)
+    {
+        super();
+        this.id = id;
+        this.name = name;
+        this.city=city;
+        count++;
+    }
+ 
+    public int getId() {
+    return id;
+    }
+ 
+    public String getName() {
+    return name;
+    }
+ 
+    public String getAddress() {
+    return city;
+    }
+}
+ 
+public class Main {
+public static void main(String[] args) 
+    {
+     List<Employee> list = new ArrayList<Employee>();
+ 
+     list.add(new Employee(1, "Ravi","Delhi"));
+     list.add(new Employee(2, "Raj","Mumbai"));
+     list.add(new Employee(3, "Rekha","Chennai"));
+     list.add(new Employee(4, "Ram","Siliguri"));
+ 
+        for (Employee s : list) 
+        {
+            System.out.print("ID, Name and City of the employee are : ");
+            System.out.println(s.getId()+" "+s.getName()+" " +s.getAddress());
+        }
+    }
+}
+-------Exercise of Lambda and Stream API-------
+
+Q1.1. Design a static calculator by using above functional interface
+import java.util.function.BiFunction;
+ 
+public class Main {
+    public static void main(String args[])
+    {
+       
+        BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+ 
+        
+        System.out.println("Sum = " + add.apply(2, 3));
+ 
+        
+        BiFunction<Integer, Integer, Integer> multiply = (a, b) -> a * b;
+ 
+        
+        System.out.println("Product = " + multiply.apply(2, 3));
+        
+        BiFunction<Integer, Integer, Integer> Divide = (a, b) -> a / b;
+        System.out.println("Divide = " + Divide.apply(2, 3));
+        
+        BiFunction<Integer, Integer, Integer> Subtract = (a, b) -> a - b;
+        System.out.println("Subtraction  = " + Subtract.apply(2, 3));
+    }
+}
+Q1.2-Use function FI to accept string and return its length
+package Exercise;
+
+import java.util.function.";
+
+public class String_Length {
+public static void main(String[] args) {
+
+   Function<String, Integer> f = 5 -> s.length();
+   System.out.print("Enter String: ");
+   String str= sc.next();
+   System.out.println("Length of String is: "+f.apply(str));
+
+   Scanner sc = new Scanner(System.in);
+   sc.close();
+     
+ }
+}
+
+Q2-How will you print unique squares of numbers in java8?
+  
+   
+ package Exercise;
+ import java.util.*;
+ public class square{
+ public static void main(String[]args){
+List<Integer>list=Arrays.asList(5,4,3,9,6,2);
+ list.stream().distinct().map(ele1->ele1).map(ele->ele*ele).forEach(ele->System
+}
+}
+
+3)How will you print the count of empty strings in java 8?
+package Exercises;
+import java.util.Arrays;
+import java.util.List;
+public class EmptyString{
+ 
+public static void main(String[] args) {
+List<String> strar = Arrays.asList("abc", "", "bc", "", "abcd","", "jkl");
+System.out.println(strar);       
+ long count = arrStr.stream().filter(x -> x.isEmpty()).count()
+  System.out.println("Empty Strings Count: " + count);
+}
+}
+ 
+4)How will you get the highest number present in a list using Java 8?
+package Exercises;
+import java.util.*;
+public class Maximum {
+ 
+public static void main(String[] args) {
+List<Integer> list = Arrays.asList(1,2,3,4,5);
+Optional<Integer> s = list.stream().reduce((x,y)->x>y?x:y);
+    if(s.isPresent()) {
+    System.out.println("Highest value in ArrayList : "+s.get());
+    }
+  
+}
+5)How will you get the lowest number present in a list using Java 8?
+package Exercises;
+import java.util.*;
+public class Minimum {
+ 
+public static void main(String[] args) {
+List<Integer> list = Arrays.asList(2,3,4,5);
+Optional<Integer> s = list.stream().reduce((x,y)->x<y?x:y);
+    if(s.isPresent()) {
+    System.out.println("Lowest value in ArrayList : "+s.get());
+    }
+  
+}
+6)How will you get the sum of all numbers present in a list using Java 8?
+package Exercises;
+ 
+import java.util.stream.Collectors;
+import java.util.*;
+public class Sum {
+ 
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
+int sum = integers.stream().collect(Collectors.summingInt(Integer::intValue));
+System.out.print(sum);
+ 
+}
+ 
+}
+7)How will you get the average of all numbers present in a list using Java 8?
+package Exercises;
+ 
+import java.util.*;
+ 
+public class Average {
+ 
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+List<Integer> list= Arrays.asList(2,3,4,5);
+System.out.print("Average of " + number +" is : ");
+System.out.print(list.stream()
+        .mapToDouble(d -> d)
+        .average()
+        .orElse(0.0));
+}
+ 
+}
+8)Find the length of a list of strings individually with the help of maps.
+package Exercises;
+import java.util.*;
+public class length8 {
+ 
+public static void main(String[] args) {
+List<String> num = Arrays.asList("a","ab","abc","abcd");
+System.out.print("the length of a list of strings : " + num + "  individually :: \n ");
+num.stream().map(ele->ele.length()).forEach(ele -> System.out.print(ele+" "));
+}
+ 
+}
+9)WAP in Java8 to convert a list of Strings to lowercase.
+package Exercises;
+ 
+import java.util.*;
+import java.util.stream.Collectors;
+ 
+public class LowerCase9 {
+ 
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+List<String> s = Arrays.asList("HELLO","WorLd");
+List<String> res = s.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+System.out.println("To Lower Case :: "+ res);
+ 
+ 
+}
+ 
+}
+10)Print the count of empty strings from a list of strings using a filter.
+package Exercises;
+import java.util.*;
+public class CountEmptyStr {
+ 
+public static void main(String[] args) {
+List<String> s = Arrays.asList("","a","","abc","","hello");
+System.out.print("Count of Empty Strings : " + s.stream().filter(ele->ele.isEmpty()).count());
+ 
+}
+ 
+}
+
+
+Q. Create a class called Employee that asks the user to input the name
+   and the age of an Employee.Raise a custom defined exception when the user enters an employee name
+   that has already been entered in array of emloyee and raise another exception
+   if the age is negative or less than 18 or greater than 60 if there is any occurence of any other exception
+   throw those also as user defined exception.
+
+package test;
+import java.util.*;
+
+class MyException extends Exception{
+	public MyException(String s) {
+		super(s);
+	}
+}
+
+
+class V{
+	static Map<String,Employee> map=new HashMap<>();
+	public static boolean validateAge(int age) {
+		try {
+			 if(age<0)throw new MyException("ERROR: Ghosts are Not Allowed");
+			 else if(age>100)throw new MyException("ERROR: Purvaj are Not Allowed");
+		     else if(age>60)throw new MyException("ERROR: Seniors are Not Allowed");
+			 else if(age<18)throw new MyException("ERROR: Children are Not Allowed");
+			 else return true;
+		}
+		catch(MyException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public static boolean validateName(String Name) {
+		try {
+			if(map.containsKey(Name))throw new MyException("ERROR: Duplicate Names are not allowed");
+			else return true;
+		}
+		catch(MyException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public static void add(Employee emp) {
+		map.put(emp.name, emp);
+		System.out.println("Successfully added Employee\n");	
+	}
+	
+}
+
+
+class Employee{
+	String name;
+	int age;
+	public Employee(String name,int age) {
+		this.name=name;
+		this.age=age;
+	}
+	public static boolean add() {
+		Scanner sc=new Scanner(System.in);
+		try {
+			String name="";
+			int age=0;
+			boolean valid=true;
+			
+			System.out.println("Enter the Name");
+			while(true) {
+				if(!valid)System.out.println("Enter the Name again: ");
+		    	name=sc.nextLine();
+				valid=V.validateName(name);
+				if(valid)break;
+			}
+			
+			System.out.println("Enter the age");
+			while(true) {
+				if(!valid)System.out.println("Enter the Age again: ");
+				age=sc.nextInt();
+				valid=V.validateAge(age);
+				if(valid)break;
+			}
+			V.add(new Employee(name,age));
+		}
+		catch(Exception e) {
+			System.out.println("Invalid number Of Entries");
+			return false;
+		}	
+	return true;
+}
+	
+}
+
+
+public class Main4 {
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	boolean valid= true;
+	String op="";
+		do {
+			System.out.println("----------------ADD EMPLOYEE DETAILS---------------");
+			valid=Employee.add();
+			if(!valid)System.out.println("You need to enter the entries once again\n");
+			else {
+			  System.out.println("Want to continue......Press (Y/N) ");
+			  op=sc.next();
+			}		
+		}while( !valid || op.charAt(0)=='Y' || op.charAt(0)=='y' );
+		System.out.println("THANKS");
+	}
+}
+
+Q.Your company website home page needs to have a new look after every 10 number of visits
+  Fresh page after 10/20 visits
+  Print the incremental value during each incremental and the method name in which it is 
+  incremented get or post.........
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Serv3
+ */
+@WebServlet("/Serv3")
+public class Serv3 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Serv3() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    int count=0,pre=1;
+    String fr="Fresh New ";
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/HTML");
+		PrintWriter out=response.getWriter();
+		out.println("<Html><body><h2>You are " + (++count) + " visitor of my site</h2 </body></html>");
+		if(pre+10==count) {
+				pre+=10;
+				if(count!=11)fr+="and new ";				
+			out.println("<html> <body><h2> "+fr+"look at "+(count)+"th visit to the page</h2></body></html>");
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+Q.A user who wants to take a loan from the bank must register with the bank. A page should be displayed to enable the user to fill the details. After the entries are validated, the loan registration ID must be assigned to the user, which will be used by the user in subsequent transactions. 
+The Registration No generated is of order:
+<uname><Currentdate><loanAmount in ten lakhs><random 4 digit no>
+Eg. If the name is AAA, loan taken is 10000, and current date is 01/08/2022, then the reg. No. can be:
+AAA0108202200100009999
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("ddMMyyyy");
+		Random a = new Random();
+		DecimalFormat b = new DecimalFormat("0000000");
+		response.setContentType("text/html");
+		java.io.PrintWriter out = response.getWriter();
+       String n = request.getParameter("name");
+		String l = request.getParameter("loan");
+		int loan = Integer.parseInt(l);
+
+
+if ((n != null && n.trim().length() != 0) && (l != null && l.trim().length() != 0)) {
+			out.println("<div align = \"center\"> User Id Is : " 
+		            + "<font color='red'>" + n.toUpperCase() + "</font>"
+					+ "<font color ='green'>" + LocalDate.now().format(myFormatObj) + "</font>"
+					+ "<font color = 'skyblue'>" +b.format(loan)+ "</font>" + "<font color = 'black'>"
+					+ String.format("%04d", a.nextInt(10000)) + "</font></div>");
+		}
+		else
+		{
+			out.println("Name or loan Amount Field Is Empty");
+		}
+	}
+
+
